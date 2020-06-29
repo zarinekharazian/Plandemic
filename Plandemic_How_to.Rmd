@@ -3,7 +3,9 @@ title: "Walkthrough: Tracking the spread of the debunked Plandemic video"
 subtitle: "How the DFRLab used CrowdTangle and CoorNet to track the spread of a viral conspiracy video on Facebook"
 author: "Zarine Kharazian, DFRLab"
 date: "June 28, 2020"
-output: github_document
+output: 
+  html_document:
+    keep_md: true
 ---
 Despite efforts by major platforms to limit its spread, copies of the widely debunked conspiracy video “Plandemic” continued to multiply and spread largely through niche online conspiracy communities in early May 2020. 
 
