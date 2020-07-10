@@ -3,7 +3,9 @@ title: "Walkthrough: Tracking the spread of the debunked Plandemic video"
 subtitle: "How the DFRLab used CrowdTangle and CoorNet to track the spread of a viral conspiracy video on Facebook"
 author: "Zarine Kharazian, DFRLab"
 date: "June 28, 2020"
-output: html_notebook
+output: 
+  html_document:
+    keep_md: true
 ---
 Despite efforts by major platforms to limit its spread, copies of the widely debunked conspiracy video “Plandemic” continued to multiply and spread largely through niche online conspiracy communities in early May 2020. 
 
@@ -39,7 +41,7 @@ What constitutes an “unusually short period” of time is defined by the “co
 In this analysis, we were not as interested in capturing coordination as we were in mapping the rapid spread of the Plandemic conspiracy through Facebook groups. 
 The below analysis, therefore, is not necessarily evidence of coordination on the part of the disparate Facebook assets; rather, it suggests a pattern of rapid link-sharing related to Plandemic throughout hundreds of different conspiracy communities, demonstrating the conspiracy's crossover appeal and the shared dynamics among these communities.
 
-We started out by following the tutorial available on the [CoorNet site](http://coornet.org/tutorial01.html) to extract a list of entities engaged in rapid linksharing. This series of steps, especially calling `get_cthares`, will take a long time, as it queries the CrowdTangle API. Be patient, maybe make yourself a cup of tea (or 11). 
+We started out by following the tutorial available on the [CoorNet site](http://coornet.org/tutorial01.html) to extract a list of entities engaged in rapid linksharing. This series of steps, especially calling `get_ctshares`, may take a while, as it queries the CrowdTangle API. **NOTE: To make the process considerably faster, you can request a rate limit increase from CrowdTangle using this [form](https://www.facebook.com/help/contact/908993259530156). You can also set the `sleep_time` parameter in the `get_ctshares` function to `1` to reduce the sleep time between calls, as I have done below.**
 
 ```{r eval = FALSE}
 
@@ -47,7 +49,7 @@ We started out by following the tutorial available on the [CoorNet site](http://
 
 urls <- get_urls_from_ct_histdata(ct_histdata_csv="/Users/zkharazian/Downloads/2020-05-09-21-40-09-EDT-Historical-Report-plandemic-2020-05-03--2020-05-10.csv")
 
-ctshares <- get_ctshares(urls, "url", "date", clean_urls = TRUE)
+ctshares <- get_ctshares(urls, "url", "date", sleep_time = 1 clean_urls = TRUE)
 
 output <- get_coord_shares(ctshares, parallel = TRUE, clean_urls = TRUE, keep_ourl_only = TRUE)
 
